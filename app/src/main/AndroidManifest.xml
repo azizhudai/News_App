@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.mindfulness.googlenewsembed">
+
+    <dist:module dist:instant="true" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name=".NewsApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/news_logo"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/news_logo"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.GoogleNewsEmbed"
+        android:hardwareAccelerated="true" > <!-- Only works in API level 11+, and allows the HTML5 videos to play in-line -->
+
+        <activity
+            android:name=".ui.web_view.NewsWebViewActivity"
+            android:exported="false"
+            android:configChanges="keyboardHidden|orientation|screenSize" /> <!-- Prevent Activity restart on such events (specially on orientation change) -->
+
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
+        <activity
+            android:name=".ui.splashscreen.SplashActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor"
+            android:configChanges="orientation|keyboardHidden|screenSize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
